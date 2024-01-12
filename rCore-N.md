@@ -12,7 +12,7 @@
 
 看了一下qemu源码发现是由于在把分配的一定空间的buf的首地址强制转化成对应结构体指针的过程中，由于开的buf大小不够放入整个结构体（其实结构体后半部分也确实用不到），就出了这个bug。
 
-![379868a3499d4c3a5549a0724380c72](\img\qemu_build_error.png)
+![qemu_build_error](\\img\\qemu_build_error.png)
 
 解决方式：在编译时加入额外的参数即可
 
@@ -21,11 +21,11 @@ make -j
 
 + 编译 rCore-N 启动内核
 
-![image-20240112104045277](\img\rCore-N_run.png)
+![rCore-N_run](\\img\\rCore-N_run.png)
 
 依照上述步骤，得到如下结果
 
-![启动！](\img\rCore-N_start!.png)
+![rCore-N_start!](\\img\\rCore-N_start!.png)
 
 + 运行异步串口测试程序 uart_benchmark
 
