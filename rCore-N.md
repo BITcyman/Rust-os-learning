@@ -21,7 +21,7 @@ make -j
 
 + 编译 rCore-N 启动内核
 
-![rCore-N_run](\\img\\rCore-N_run.png)
+![rCore-N_run](/img/rCore-N_run.png)
 
 依照上述步骤，得到如下结果
 
