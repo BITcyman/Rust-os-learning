@@ -95,7 +95,12 @@ make -j
 Shell: Process 2 exited with code 0
 ```
 
-
-
 ##### 用户态中断 [文档](./user_interrupt.md)
+
+##### user_uart.rs 中的各种串口分析
+
++ `BufferedSerial`：带缓冲区的串口，收到 ”已接受到信息“ 或者 ”当前串口可发送“ 中断信号后，cpu先将收到的数据push到缓冲区中 或者 将 tx 中的数据发送到串口中。
++ `PollingSerial`: 直接读写的串口，收到发送和接收请求时，直接向串口发、从串口读，发送失败读取失败都直接返回，需要进程进行轮询，因此没有中断处理例程。
++ `AsyncSerial`: 带缓冲区的异步串口，收到读、写请求时，先创建一个 AsyncReadFuture 或 AsyncWriteFuture，并对其进行 await。在接收到中断信号时，将唤醒当前正在串口上等待的一个 AsyncReadFuture 或 AsyncWriteFuture，继续 future 的轮询。待读或写结束，异步函数 `read/write`返回，继续原进程执行。
++ `AsyncUnbufferedSerial`: 不带缓冲区的异步串口。
 

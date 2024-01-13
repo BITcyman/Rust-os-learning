@@ -7,10 +7,9 @@
     + [x] uart
     + [x] pac
     + [x] svd
-+ [ ] 看 rCore-N 的实现
++ [x] 看 rCore-N 的实现
     + [x] 运行 rCore-N + uartbenchmark
-    + [ ] 学习异步串口实现
-+ [ ] 生成一版技术方案
+    + [x] 学习异步串口实现
 + [ ] 写独立的crate
 
 ### 一些基本概念
@@ -28,8 +27,6 @@
 + 串行：数据一位一位的传送
 + 异步：以一个字符为传输单位、通信中两个字符间的时间间隔多少是不固定的，在同一个字符中两个相邻位之间的时间间隔是固定的。
 + 数据传送速率用波特率来表示，即每秒传送的二进制位数
-
-![uart_info](\img\uart_info.png)
 
 #### svd
 
@@ -51,7 +48,11 @@ SVD文件描述了微控制器的硬件特征。它列出了所有可用的外�
 
 
 
+### 写独立的Crate   
 
+[async-uart-driver](https://github.com/BITcyman/async-uart-driver/tree/main)
 
-
++ [x] pac 导入
++ [ ] 移入同步串口
++ [ ] 移入异步串口
 
