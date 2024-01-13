@@ -33,3 +33,69 @@ make -j
 
 #### [学习异步串口的实现](https://github.com/duskmoon314/rCore-N/blob/41796b85015a3e3080302270f9ab768827dd1426/user/src/user_uart.rs) 
 
+##### 研究 uart_benchmark
+
+```
+# /dev/pts/4
+
+# 在 shell 中 输入 uart_benchmark 并敲下回车
+[DEBUG 0]: Fork start
+[DEBUG 0]: forked task cx ptr: 0xffffffffffff4f58
+[DEBUG 0]: new_task 2 via fork	 # os/src/syscall/process.rs/sys_fork
+[DEBUG 1]: EXEC uart_benchmark	 # os/src/syscall/process.rs/sys_exec
+# 创建 uart_benchmark 进程结束，开始执行
+
+# 接下来初始化用户态中断
+# spwan("cpu_load\0")
+[DEBUG 1]: SPAWN exec "cpu_load"
+[DEBUG 1]: new_task via spawn 3 # os/src/syscall/process.rs/sys_spawn new_pid = 3
+# spwan("uart_load\0")
+[DEBUG 2]: SPAWN exec "uart_load"
+[DEBUG 2]: new_task via spawn 4 # os/src/syscall/process.rs/sys_spawn new_pid = 4
+# spwan("uart_load\0")
+[DEBUG 2]: SPAWN exec "uart_load"
+[DEBUG 2]: new_task via spawn 5 # os/src/syscall/process.rs/sys_spawn new_pid = 5
+
+
+[DEBUG 3]: [push trap record] pid: 4, cause: 64, message: 72
+[DEBUG 3]: [push trap record] pid: 5, cause: 80, message: 80
+[DEBUG 0]: [syscall claim] mapping device 14 to pid 4
+[DEBUG 3]: [syscall claim] mapping device 15 to pid 5
+[DEBUG 0]: [push trap record] pid: 4, cause: 8, message: 14
+[DEBUG 2]: [push trap record] pid: 5, cause: 8, message: 15
+[DEBUG 0]: [SET EXT INT] dev: 14, enable: 1
+[DEBUG 3]: [SET EXT INT] dev: 15, enable: 1
+[DEBUG 0]: set UTIP for pid 5
+[DEBUG 2]: set UTIP for pid 4
+[ INFO 3]: pid: 5 exited with code 0, time intr: 125, cycle count: 2754088817
+[ INFO 0]: pid: 4 exited with code 0, time intr: 171, cycle count: 3671655240
+[DEBUG 2]: [push trap record] pid: 3, cause: 48, message: 15
+[ INFO 2]: pid: 3 exited with code 216821212, time intr: 170, cycle count: 3741433626
+[ INFO 3]: pid: 2 exited with code 0, time intr: 23926, cycle count: 3457064619
+
+
+
+#/dev/pts/5
+>> uart_benchmark
+# spwan("cpu_load\0") 结束
+[uart benchmark] User mode unbuffered async driver benchmark begin.
+# spwan("uart_load\0")
+[uart load] trap init result: 0xffffffffffffd000, now waiting for config init...
+
+[uart load] trap init result: 0xffffffffffffd000, now waiting for config init...
+[uart load [uart load 23] Async mode, claim result: 0]x Async mode, claim result: 100040000x, enable res: 0x100050000, enable res: 0x
+0
+[uart 3] Unbuffered Async, refcnt: 4
+[uart 3] Unbuffered Async, Intr count: 1, Tx: 1, Rx: 0
+[uart 3] Test finished, 16 bytes sent, 16 bytes received, 0 bytes error.
+[uart 2] Unbuffered Async, refcnt: 3
+[uart 2] Unbuffered Async, Intr count: 2, Tx: 1, Rx: 1
+[uart 2] Test finished, 16 bytes sent, 1 bytes received, 0 bytes error.
+[uart benchmark] User mode unbuffered async driver benchmark finished.
+Shell: Process 2 exited with code 0
+```
+
+
+
+##### 用户态中断 [文档](./user_interrupt.md)
+
