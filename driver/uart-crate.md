@@ -54,5 +54,9 @@ SVD文件描述了微控制器的硬件特征。它列出了所有可用的外�
 
 + [x] pac 导入
 + [ ] 移入同步串口
+    + [x] Buffered 
+    + [ ] Polling
 + [ ] 移入异步串口
+    + [ ] Buffered
+    + [ ] Polling
 
