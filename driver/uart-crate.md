@@ -188,11 +188,13 @@ SVD文件描述了微控制器的硬件特征。它列出了所有可用的外�
 + 分析当前的 crate 中使用的运行时机制
     + 当前 crate 中对于 Future 的使用方式为：接收到一个IO请求后生成一个新的Future，然后注册一个新的 waker 覆盖掉原有的 IO waker
     + 额外实现的 两个 Future (SerialReadFuture 和 SerialWriteFuture) 也仅仅是实现了 Future 的创建工作，以及记录 IO 相关的数据，并不直接操作 Rx/Tx Buf，对缓冲的相关操作仍需要调用 AsyncSerial 的相关接口
-    + 中断服务例程在
+    + 中断服务例程在 AsyncSerials 中
 + Embassy 中实现的 uart 驱动
     + 首先由 BufferedUart 分成 BufferedUartRx 和 BufferedUartTx 两部分
         + 两部分 分别用于处理读操作和写操作，操作 State 中各自的部分
         + BufferedUart 只负责 new 和 配置State 
     + 然后会创建一个静态的 State
         + 结构体中包括：rx_buf、tx_buf、rx_waker和tx_waker
+        + 静态实例会被中断服务例程和BufferedUartRx 、BufferedUartTx 使用
+    + 中断服务例程是单独设计成一个结构体
 
