@@ -6,6 +6,14 @@
 
 ### 24 春季学期
 
+#### 第二周 3.5-3.11
+
+| 序号 | 任务                  | 状态                                       | 结果                                                         |
+| ---- | --------------------- | ------------------------------------------ | ------------------------------------------------------------ |
+| 1    | 异步串口驱动crate     | 独立Crate已完成<br />正在移入Embassy运行时 | [文档](./driver/uart-crate.md)<br />[仓库](https://github.com/BITcyman/async-uart-driver) |
+| 2    | OS内核赛报名 - Kinako | 已完成                                     | [github仓库](https://github.com/BITcyman/OSKernel2024-Kinako)<br />[gitlab仓库](https://gitlab.eduxiji.net/T202410007992527/oskernel2024-kinako) |
+|      |                       |                                            |                                                              |
+
 #### 第一周 2.26-3.4
 
 | 序号 | 任务                           | 状态   | 结果                                                   |
