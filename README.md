@@ -24,7 +24,7 @@
 
 | 序号 | 任务                                                         | 状态   | 结果                       |
 | ---- | ------------------------------------------------------------ | ------ | -------------------------- |
-| 1    | 学习星光二上目前已有的 [PAC](https://codeberg.org/weathered-steel/jh71xx-pac) 和 [HAL](https://codeberg.org/weathered-steel/jh71xx-hal) | 已完成 | [文档](./Vision_Five 2.md) |
+| 1    | 学习星光二上目前已有的 [PAC](https://codeberg.org/weathered-steel/jh71xx-pac) 和 [HAL](https://codeberg.org/weathered-steel/jh71xx-hal) | 已完成 | [文档](./Vision_Five2.md) |
 | 2    | 准备考研复试                                                 |        |                            |
 |      |                                                              |        |                            |
 
