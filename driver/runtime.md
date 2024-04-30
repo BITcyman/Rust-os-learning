@@ -6,9 +6,11 @@
 
 + Q: 是否需要在 OS 和 异步串口驱动 中都使用 同一种 异步运行时（或者说同一种执行器）
 
-    + 内核启动时是否需要采用一些不同的启动手段，类似于 `#[embassy_executor::task]`，来将运行在一个 executor 线程上
+    + 内核启动时是否需要采用一些不同的启动手段，类似于 `#[embassy_executor::task]`，来将其运行在一个 executor 线程上
 
         ```rust
+        /// 在 rcore 中引入异步运行时
+        
         #[no_mangle]
         // 内核入口函数
         pub fn rust_main() -> ! {
@@ -35,9 +37,37 @@
 
     + 在目前的实现中，管理具体读写任务的 future 被包装在一个 Task 中，这个 Task 直接加入执行器，并不会返回到内核，相应的内核不知道这个 Task 的 执行状态，就更不可能通知 线程 相应的读写操作已经完成。（这种实现下，同步的 OS 无法通过 block_on 使其阻塞地等待该事件完成）
 
+        ```rust
+        /// 目前的异步串口驱动的 async read 实现
+        
+        pub async fn read(self: Arc<Self>, buf: &'static mut [u8]) {
+                let future = SerialReadFuture {
+                    buf,
+                    read_len: 0,
+                    driver: self.clone(),
+                };
+                // 注册
+                let task = Task::new(Box::pin(future), self.clone(), crate::task::TaskIOType::Read);
+                match task.clone().poll(){
+                    Poll::Ready(_) => {
+                        log::debug!("first read successfully");
+                        drop(task)
+                    },
+                    Poll::Pending=> {
+                        self.register_readwaker(
+                            unsafe { from_task(task.clone()) }
+                        );
+                        self.executor.push_task(Task::from_ref(task.clone()));
+                    }
+                }
+            }
+        
+        ```
+
     + 如果是使用同一个异步运行时，又该怎么去通知对应的线程？（或者这个时候可以叫唤醒？）Embassy中时钟中断的例子：采用一个静态的数组去记录等待在某个时钟上升沿的事件的waker，然后等到时钟信号到来唤醒该 waker
 
         ```rust
+        /// embassy 中 有关 时钟中断 的处理
         static EXTI_WAKERS: [AtomicWaker; EXTI_COUNT] = [NEW_AW; EXTI_COUNT];
         
         // 接收到中断请求的时候就
