@@ -70,12 +70,6 @@
         /// embassy 中 有关 时钟中断 的处理
         static EXTI_WAKERS: [AtomicWaker; EXTI_COUNT] = [NEW_AW; EXTI_COUNT];
         
-        // 接收到中断请求的时候就
-        // Wake the tasks
-            for pin in BitIter(bits) {
-                EXTI_WAKERS[pin as usize].wake();
-            }
-        
         unsafe fn on_irq() {
         	// ...
             // Wake the tasks
