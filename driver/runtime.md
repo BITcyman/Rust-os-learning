@@ -1,6 +1,71 @@
 ## 异步串口驱动的运行时
 
-#### 目前最主要的问题
+#### 5-1 
+
++ [ ] QEMU 中 Alien 使用 异步串口驱动
+
+##### QEMU 中 Alien 使用异步串口驱动
+
++ Qemu 中创建多个串口
+
+在 qemu 启动的参数中加入 `-serial /dev/pts/4 -serial /dev/pts/6 -serial /dev/pts/10` 创建多个串口。
+
+但 Alien 启动后 只检测 一个串口设备。
+
+```shell
+/// 在 Alien 初始化设备时打印设备树信息如下
+[0]     /
+[0]     reserved-memory
+[0]     mmode_resv0@80000000
+[0]     fw-cfg@10100000
+[0]     flash@20000000
+[0]     chosen
+[0]     memory@80000000
+[0]     cpus
+[0]     cpu@0
+[0]     interrupt-controller
+[0]     cpu-map
+[0]     cluster0
+[0]     core0
+[0]     soc
+[0]     rtc@101000
+[0]     uart@10000000                         《---- only one uart
+[0]     poweroff
+[0]     reboot
+[0]     test@100000
+[0]     pci@30000000
+[0]     virtio_mmio@10008000
+[0]     virtio_mmio@10007000
+[0]     virtio_mmio@10006000
+[0]     virtio_mmio@10005000
+[0]     virtio_mmio@10004000
+[0]     virtio_mmio@10003000
+[0]     virtio_mmio@10002000
+[0]     virtio_mmio@10001000
+[0]     plic@c000000
+[0]     clint@2000000
+```
+
+已询问 陈志杨 学长，需要改一下 Qemu 和 opensbi 的相关配置。
+
+使用修改后的 Qemu 能够正常启动 Alien，并且输出设备信息能够看见多个串口设备。
+
+```
+[0] init device start
+...
+[0]     uart@10000000
+[0]     serial@10005000
+[0]     serial@10004000
+[0]     serial@10003000
+[0]     serial@10002000
+...
+```
+
++ 
+
+
+
+#### 4-30 目前最主要的问题
 
 异步的 串口读写操作 无法在 同步的内核中 通知 调取读写操作的线程 相应的读写操作已经完成
 
@@ -82,3 +147,7 @@
         ```
 
     + 那么如何记录这些等待在某个读写事件上的线程？（原则上上面的 `EXTI_WAKERS` 是按照时间中断的引脚 pin 来限制，不是按照动态产生的某个读写事件来排列的）是否可以在调用读写事件的时候动态分配一个id，然后 让 该线程的 waker 存到对应 id 的位置处，同时读写事件也会保存这个 id，等到事件完成以后，就去 wake 对应id位置的 waker
+
+
+
++ 几个串口 -czy
