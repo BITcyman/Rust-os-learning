@@ -61,7 +61,43 @@
 ...
 ```
 
-+ 
+由于 rCore-N 中有一个已经改过的 RustSBI，能够启动多个串口，并使得串口能够接收中断，故选择直接把 那里面的 RustSBI 拿过来用。但直接使用导致原 Alien 启动时输出的信息格式出现问题。
+
+```
+[rustsbi] Implementation: RustSBI-QEMU Version 0.0.2
+[rustsbi-dtb] Hart count: cluster0 with 1 cores
+[rustsbi] misa: RV64ACDFHIMSU
+[rustsbi] mideleg: ssoft, stimer, sext (0x1666)
+[rustsbi] medeleg: ima, ia, la, sa, uecall, ipage, lpage, spage (0xb1a3)
+[rustsbi] enter supervisor 0x80200000
+[0] 
+         _      _   _
+                         / \    | | (_)   ___   _ __
+                                                       / _ \   | | | |  / _ \ | '_ \
+                                                                                      / ___ \  | | | | |  __/ | | | |
+                                                                                                                      /_/   \_\ |_| |_|  \___| |_| |_|
+
+                                                                                                                                                      [0] Init logger None
+                [0] Boot hart 0
+                               [0] This is a device tree representation of a riscv-virtio,qemu machine
+                                                                                                      SMP:    1
+                                                                                                               Memory: 0x80000000..0xc0000000
+                                                                                                                                             PLIC:   0xc000000..0xc800000
+               CLINT:  0x2000000..0x2010000
+                                           Initrd: Some(
+                                                            0x88200000..0x882bb136,
+                                                                                   )
+                                                                                    Bootargs: Some("rdinit=/init")
+                                                                                                                  [0] Page start:0x82947,end:0xc0000,count:0x3d6b9
+        [0] Bitmap manage 251569 pages using 8 pages
+                                                    [0] Frame allocator init success
+                                                                                    [0] Relocate initrd data to 0x000000008294f000
+                                                                                                                                  [0] Kernel Heap size: 0x26MB
+```
+
+可以看到 os启动后 输出的相关信息的格式有问题，主要是由于换行和空格的位置不是很合理，同时最后并没有唤醒初始线程去执行 shell。 正在查找 bug 位置
+
+
 
 
 
