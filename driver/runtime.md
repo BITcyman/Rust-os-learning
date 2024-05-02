@@ -2,13 +2,20 @@
 
 ##### 修改的使用异步启动的 Alien [仓库分支地址](https://github.com/BITcyman/Alien/tree/async-uart) 
 
+#### 5-2
 
++ [ ] Qemu 中 Alien 使用异步串口驱动
+
+
+
+##### 调了一会还是没能找到 RustSBI 问题所在，尝试修改 OpenSBI 
+
++ [ ] 拉取 OpenSBI 源码并编译，看看 Alien 是否能够使用该 OpenSBI 正常运行
++ [ ] 修改 OpenSBI 后编译，看看 Alien 是否能够使用修改后的 OpenSBI 正常运行
 
 
 
 #### 5-1 
-
-+ [ ] QEMU 中 Alien 使用 异步串口驱动
 
 ##### QEMU 中 Alien 使用异步串口驱动
 
