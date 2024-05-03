@@ -1,17 +1,52 @@
 ## 异步串口驱动的运行时
 
+#### 5-4
+
++ [ ] debug，看看异步串口驱动哪里出问题了，感觉可能是读操作的中断接收机制出问题了
++ [ ] Alien 上板
+
+
+
+#### 5-3
+
++ [x] Qemu 中 Alien 使用异步串口驱动 
+
 ##### 修改的使用异步启动的 Alien [仓库分支地址](https://github.com/BITcyman/Alien/tree/async-uart) 
 
+直接使用默认的 OpenSBI 试了一下，居然直接就行了，能够接收到外部中断（哭了）
+
+目前在 Alien 中开了双核，4个新的串口；内核启动后，一个核用于正常执行原 Alien的程序，另一个核在初始化完毕后，会使用 Embassy 运行时的启动过程（即在该核上运行的线程为 executor 线程），然后初始化异步串口，执行相关的读写操作。目前控制台输出如下，能够看到成功将新创建的一个串口的中断绑定在 id=1 的 hart 上了。但目前的写操作能够正常写入，但读操作却没有读到相应的内容。
+
+```
+[1] driver_init
+[1] [devices/src] init async_uart
+[1] Init async serial, base_addr:0x10005000,irq:15	<= 新创建了一个串口，用于测试异步驱动
+[1] PLIC enable irq 15 for hart 1, priority 1		<= 将多创建的串口绑定在1号hart上，
+[1] external interrupt hart_id: 1, irq: 15
+[1] [DEBUG] [Async Serial] Interrupt!
+[1] [DEBUG] [SERIAL] Transmitter Holding Register Empty
+[1] [DEBUG] read task
+[1] [DEBUG] pending 4
+[1] [DEBUG] read pend
+[1] external interrupt hart_id: 1, irq: 15
+[1] [DEBUG] [Async Serial] Interrupt!
+[1] [DEBUG] [SERIAL] Transmitter Holding Register Empty
+[1] [DEBUG] first write successfully! write num is 9  <= [1,2,3,4,5,6,7,8,9]
+[1] [0, 0, 0, 0, 0, 0]								<= 显然没有读到 
+```
+
+
+
+
+
 #### 5-2
-
-+ [ ] Qemu 中 Alien 使用异步串口驱动
-
-
 
 ##### 调了一会还是没能找到 RustSBI 问题所在，尝试修改 OpenSBI 
 
 + [ ] 拉取 OpenSBI 源码并编译，看看 Alien 是否能够使用该 OpenSBI 正常运行
 + [ ] 修改 OpenSBI 后编译，看看 Alien 是否能够使用修改后的 OpenSBI 正常运行
+
+OpenSBI 编译出问题，唉，难啊。
 
 
 
