@@ -2,12 +2,34 @@
 
 #### 5-4
 
-+ [ ] debug，看看异步串口驱动哪里出问题了，感觉可能是读操作的中断接收机制出问题了
++ [x] debug，看看异步串口驱动哪里出问题了，感觉可能是读操作的中断接收机制出问题了
 + [ ] Alien 上板
 
 
 
 将多创建的基址在 0x10005000 上的串口绑定到一个终端上，目前能够看到从串口中输出的 ABC 字符串，但在终端中向串口中输入字符时，唤醒 串口读协程 出错。目前在找bug。
+
+又遇到多个bug。
+
++ [x] 并不总是能往中断写数据
+
+    + Transmitter Holding Register Empty 中断信号有的时候会早于 write 事件，导致还没有写入缓冲区，就开始传数据；等到真正写入缓冲区以后，又没中断了
+    + 解决方法：write 事件写完以后，重新 触发一次中断。
+
++ [x] 读取不到终端输入的数据
+
+    + ```
+        [1] [DEBUG] [Async Serial] Interrupt!
+        [1] [DEBUG] [SERIAL] Received data available
+        [1] [DEBUG] wake_task, the tasks' state is 1 (Ready == 1)
+        [1] [DEBUG] wake_task, the tasks' state is 1 (Ready == 1)
+        [1] [DEBUG] Error task iotype 0
+        [1] [DEBUG] pending 4
+        ```
+
+    + task_iotype 出问题了，感觉唤醒机制有问题，Task没了好像
+
+    + 把第一次进入之后先poll一次的机制去掉以后就能够正常跑了（好像对于 TaskRef 的 Clone 并不能 Clone一个真正的 Task，只是将指针进行 copy，没有意义）
 
 
 
