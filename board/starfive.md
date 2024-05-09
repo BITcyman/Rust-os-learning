@@ -44,3 +44,5 @@ sudo apt remove brltty
 
 #### 启动
 启动能看到OpenSBI，uboot正常启动，加载内核后 go 0x40200000 不继续执行。
+
+tftp传入的Alien大小只有1M左右，感觉不太对劲，应该是编译参数有问题
