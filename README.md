@@ -8,12 +8,12 @@
 
 #### 第十一周 5.8-5.14
 
-| 序号 | 任务                                                         | 状态    | 结果                                                         |
-| ---- | ------------------------------------------------------------ | ------- | ------------------------------------------------------------ |
-| 1    | 完成毕业论文初稿                                             | 13500字 | [论文大纲](https://github.com/BITcyman/Rust-os-learning/blob/main/report/paper/paper-outline.md)    [论文](https://github.com/BITcyman/Rust-os-learning/tree/main/report/paper) |
-| 2    | Alien 上板[论文大纲](https://github.com/BITcyman/Rust-os-learning/blob/main/report/paper/paper-outline.md)    [论文](https://github.com/BITcyman/Rust-os-learning/tree/main/report/paper) | 完成    | [过程记录](./board/starfive.md)                              |
-| 3    | 准备演示                                                     | 正在搞  |                                                              |
-| 4    | 板子上的异步串口驱动                                         |         |                                                              |
+| 序号 | 任务                 | 状态    | 结果                                                         |
+| ---- | -------------------- | ------- | ------------------------------------------------------------ |
+| 1    | 完成毕业论文初稿     | 13500字 | [论文大纲](https://github.com/BITcyman/Rust-os-learning/blob/main/report/paper/paper-outline.md)    [论文](https://github.com/BITcyman/Rust-os-learning/tree/main/report/paper) |
+| 2    | Alien 上板           | 完成    | [过程记录](./board/starfive.md)                              |
+| 3    | 准备演示             | 正在搞  |                                                              |
+| 4    | 板子上的异步串口驱动 |         |                                                              |
 
 
 
