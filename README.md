@@ -6,6 +6,47 @@
 
 ### 24 春季学期
 
+#### 第十一周 5.8-5.14
+
+| 序号 | 任务                                                         | 状态    | 结果                                                         |
+| ---- | ------------------------------------------------------------ | ------- | ------------------------------------------------------------ |
+| 1    | 完成毕业论文初稿                                             | 13500字 | [论文大纲](https://github.com/BITcyman/Rust-os-learning/blob/main/report/paper/paper-outline.md)    [论文](https://github.com/BITcyman/Rust-os-learning/tree/main/report/paper) |
+| 2    | Alien 上板[论文大纲](https://github.com/BITcyman/Rust-os-learning/blob/main/report/paper/paper-outline.md)    [论文](https://github.com/BITcyman/Rust-os-learning/tree/main/report/paper) | 完成    | [过程记录](./board/starfive.md)                              |
+| 3    | 准备演示                                                     | 正在搞  |                                                              |
+| 4    | 板子上的异步串口驱动                                         |         |                                                              |
+
+
+
+#### 第十周 5.1-5.7
+
+| 序号 | 任务                        | 状态 | 结果                                                         |
+| ---- | --------------------------- | ---- | ------------------------------------------------------------ |
+| 1    | 异步串口驱动在 Alien 中使用 | 完成 | [过程记录](./driver/runtime.md)                              |
+| 2    | 写了一部分毕业论文          |      | [论文大纲](https://github.com/BITcyman/Rust-os-learning/blob/main/report/paper/paper-outline.md)    [论文](https://github.com/BITcyman/Rust-os-learning/tree/main/report/paper) |
+
+
+
+#### 第九周 4.24-4.30
+
+| 序号 | 任务                                                         | 状态           | 结果                   |
+| ---- | ------------------------------------------------------------ | -------------- | ---------------------- |
+| 1    | paper-translation                                            | 完成           | 正常显示公式、评论功能 |
+| 2    | 异步串口驱动在 Alien 中使用                                  | [遇到问题](./driver/runtime.md#4-30 目前最主要的问题) |                        |
+| 3    | 推进内核赛 [Kinako](https://github.com/BITcyman/OSKernel2024-Kinako) | 进行中  | 进展：ch3              |
+
+
+
+#### 第八周 4.17-4.23
+
+| 序号 | 任务                                                         | 状态   | 结果                                                         |
+| ---- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ |
+| 1    | paper-translation                                            | 完成   | [页面](https://cyman-paper-translation.github.io/main-page/) |
+| 2    | 使用 Embassy 模式改进异步串口驱动                            | 完成   | [commit](https://github.com/BITcyman/async-uart-driver/commit/3d1265d17e6b2d6e1ce8df351f6e6d19d04136ce) |
+| 3    | 推进内核赛 [Kinako](https://github.com/BITcyman/OSKernel2024-Kinako) | 进行中 | 进展：ch2                                                    |
+
+
+
+
 #### 第七周 4.10-4.16
 
 | 序号 | 任务                       | 状态 | 结果                                                         |
