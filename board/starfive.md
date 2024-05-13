@@ -59,3 +59,26 @@ make vf2 VF2=y SMP=2
 启动能看到OpenSBI，uboot正常启动，加载内核后 go 0x40200000 不继续执行。
 
 发现 tftp 传入的 Alien 大小只有1M左右，是编译参数有问题(已解决，需要使用上文修改后的内核的编译方式)
+
+
+#### 截图
+
+OpenSBI输出
+
+![](./img/opensbi.png)
+
+星光二板子的相关信息
+
+![](./img/visionfive2.png)
+
+加载内核到板子上
+
+![](./img/tftpboot.png)
+
+Alien成功启动
+
+![](./img/Alien.png)
+
+使用 Alien 命令
+
+![](./img/Alien_cmd.png)
