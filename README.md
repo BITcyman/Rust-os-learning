@@ -10,9 +10,9 @@
 
 | 序号 | 任务                 | 状态    | 结果                                                         |
 | ---- | -------------------- | ------- | ------------------------------------------------------------ |
-| 1    | 完成毕业论文初稿     | 13500字 | [论文大纲](https://github.com/BITcyman/Rust-os-learning/blob/main/report/paper/paper-outline.md)    [论文](https://github.com/BITcyman/Rust-os-learning/tree/main/report/paper) |
+| 1    | 完成毕业论文初稿     | 17000字 | [论文大纲](https://github.com/BITcyman/Rust-os-learning/blob/main/report/paper/paper-outline.md)    [论文](https://github.com/BITcyman/Rust-os-learning/tree/main/report/paper) |
 | 2    | Alien 上板           | 完成    | [过程记录](./board/starfive.md)                              |
-| 3    | 准备演示             | 正在搞  |                                                              |
+| 3    | 准备演示             | 完成    | [演示大纲](./report/presentation/presentation-outline.md)    |
 | 4    | 板子上的异步串口驱动 |         |                                                              |
 
 
@@ -31,7 +31,7 @@
 | 序号 | 任务                                                         | 状态           | 结果                   |
 | ---- | ------------------------------------------------------------ | -------------- | ---------------------- |
 | 1    | paper-translation                                            | 完成           | 正常显示公式、评论功能 |
-| 2    | 异步串口驱动在 Alien 中使用                                  | [遇到问题](./driver/runtime.md#4-30 目前最主要的问题) |                        |
+| 2    | 异步串口驱动在 Alien 中使用                                  | [遇到问题](./driver/runtime.md) |                        |
 | 3    | 推进内核赛 [Kinako](https://github.com/BITcyman/OSKernel2024-Kinako) | 进行中  | 进展：ch3              |
 
 
