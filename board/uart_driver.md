@@ -2,7 +2,7 @@
 
 ### 问题描述
 
-查看[用户手册]((https://doc.rvspace.org/VisionFive2/PDF/VisionFive2_40-Pin_GPIO_Header_UG.pdf))的第8章中指出最多支持6路UART，可以将一些未使用的 GPIO 复用为 UART，需要修改 dts 文件后编译为 dtb 文件。
+查看[用户手册](https://doc.rvspace.org/VisionFive2/PDF/VisionFive2_40-Pin_GPIO_Header_UG.pdf)的第8章中指出最多支持6路UART，可以将一些未使用的 GPIO 复用为 UART，需要修改 dts 文件后编译为 dtb 文件。
 
 参照 [这里](https://github.com/starfive-tech/linux/blob/JH7110_VisionFive2_devel/include/dt-bindings/pinctrl/starfive%2Cjh7110-pinfunc.h) 给出的变量值和用户手册中第8章给出的示例，修改了dts文件，并得到了新的dtb文件。
 
